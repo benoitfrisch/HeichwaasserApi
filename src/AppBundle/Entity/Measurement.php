@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -32,6 +32,7 @@ class Measurement
     private $station;
 
     /**
+     * @var \DateTime
      * @Assert\DateTime()
      * @ORM\Column(type="datetime",  nullable=true)
      * @Serializer\Groups({"measurement"})
@@ -53,6 +54,11 @@ class Measurement
      * @Serializer\Groups({"measurement"})
      */
     private $unit;
+
+    public function __toString()
+    {
+        return $this->value . " " . $this->unit;
+    }
 
     /**
      * @return int

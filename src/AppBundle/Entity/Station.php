@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -23,10 +23,10 @@ class Station
     private $id;
 
     /**
-     * Many Stations have Many Rivers.
-     * @Assert\NotBlank()
-     * @ORM\ManyToMany(targetEntity="River", inversedBy="stations")
-     * @ORM\JoinTable(name="river_stations")
+     * Many Measurements have One Station.
+     * @ORM\ManyToOne(targetEntity="River", inversedBy="stations")
+     * @ORM\JoinColumn(name="river_id", referencedColumnName="id")
+     * @Serializer\Groups({"measurement"})
      */
     private $river;
 
@@ -45,15 +45,13 @@ class Station
     private $city;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\Column(type="float",  nullable=false)
+     * @ORM\Column(type="float",  nullable=true)
      * @Serializer\Groups({"station"})
      */
     private $latitude;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\Column(type="float",  nullable=false)
+     * @ORM\Column(type="float",  nullable=true)
      * @Serializer\Groups({"station"})
      */
     private $longitude;
@@ -65,6 +63,11 @@ class Station
      * @Serializer\Groups({"station"})
      */
     private $measurements;
+
+    public function __toString()
+    {
+        return $this->city;
+    }
 
     /**
      * @return int

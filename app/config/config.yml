@@ -85,3 +85,11 @@ jms_serializer:
         json:
             options: JSON_PRETTY_PRINT
 nelmio_api_doc: ~
+
+
+easy_admin:
+    site_name: "Héichwaasser"
+    entities:
+        - AppBundle\Entity\River
+        - AppBundle\Entity\Station
+        - AppBundle\Entity\Measurement

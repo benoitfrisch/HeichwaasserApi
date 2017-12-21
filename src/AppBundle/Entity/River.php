@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -38,12 +38,17 @@ class River
     private $name;
 
     /**
-     * Many Rivers have many Stations
-     * @ORM\ManyToMany(targetEntity="Station", mappedBy="river")
-     * @ORM\OrderBy({"city" = "DESC"})
+     * One Station has Many Measurements.
+     * @ORM\OneToMany(targetEntity="Station", mappedBy="river")
+     * @ORM\OrderBy({"city" = "ASC"})
      * @Serializer\Groups({"river","station"})
      */
     private $stations;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * @return int
@@ -96,6 +101,21 @@ class River
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @param mixed $stations
+     * @return River
+     */
+    public function updateStations($stations)
+    {
+        if (!empty($this->getStations())) {
+            $new = array_merge($stations, $this->getStations()->getValues());
+        } else {
+            $new = $stations;
+        }
+        $this->stations = $new;
         return $this;
     }
 
