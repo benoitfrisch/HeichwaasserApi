@@ -1,7 +1,7 @@
 Héichwaasser API
 ======
 
-This uses the [Measured data levels](https://data.public.lu/en/datasets/measured-water-levels/) and creates a history and a JSON Api.
+This uses the [Measured water levels](https://data.public.lu/en/datasets/measured-water-levels/) and creates a history and a JSON Api.
 
 
 Documentation
