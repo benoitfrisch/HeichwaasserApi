@@ -16,7 +16,7 @@ class RiverController extends Controller
      *  description="This displays all rivers including stations in alphabetical order."
      * )
      * @Get("/api/v1/rivers", defaults={"_format"="json"})
-     * @View(serializerGroups={"river", "station"})
+     * @View(serializerGroups={"river","river_station", "station"})
      */
     public
     function getRiverAction()
@@ -32,7 +32,7 @@ class RiverController extends Controller
      *  description="This displays a river with stations in alphabetical order."
      * )
      * @Get("/api/v1/rivers/{id}", defaults={"_format"="json"})
-     * @View(serializerGroups={"river", "station"})
+     * @View(serializerGroups={"river","river_station", "station"})
      */
     public
     function getRiverDetailAction($id)

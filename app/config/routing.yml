@@ -7,3 +7,10 @@ easy_admin_bundle:
     type:     annotation
     prefix:   /admin
 
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

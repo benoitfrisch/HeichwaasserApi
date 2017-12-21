@@ -39,7 +39,7 @@ class River
     /**
      * One Station has Many Measurements.
      * @ORM\OneToMany(targetEntity="Station", mappedBy="river")
-     * @ORM\OrderBy({"city" = "ASC"})
+     * @ORM\OrderBy({"city" = "ASC", "supplement" = "ASC"})
      * @Serializer\Groups({"river_station"})
      */
     private $stations;

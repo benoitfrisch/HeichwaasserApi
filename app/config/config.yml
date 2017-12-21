@@ -87,6 +87,15 @@ jms_serializer:
 nelmio_api_doc: ~
 
 
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+            address: info@fresh.lu
+            sender_name: heichwaasser.LU
+
+
 easy_admin:
     site_name: "Héichwaasser"
     entities:

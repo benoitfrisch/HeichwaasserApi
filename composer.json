@@ -34,6 +34,7 @@
     "friendsofsymfony/rest-bundle": "2.2.*",
     "jms/serializer-bundle": "1.1.*",
     "nelmio/api-doc-bundle": "2.13.*",
+    "friendsofsymfony/user-bundle": "~2.0",
     "javiereguiluz/easyadmin-bundle": "1.*"
   },
   "require-dev": {
