@@ -19,7 +19,6 @@ class Measurement
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Serializer\Groups({"measurement"})
      */
     private $id;
 
@@ -27,7 +26,6 @@ class Measurement
      * Many Measurements have One Station.
      * @ORM\ManyToOne(targetEntity="Station", inversedBy="measurements")
      * @ORM\JoinColumn(name="station_id", referencedColumnName="id")
-     * @Serializer\Groups({"measurement"})
      */
     private $station;
 

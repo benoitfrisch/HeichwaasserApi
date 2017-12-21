@@ -1,0 +1,44 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+
+class RiverController extends Controller
+{
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This displays all rivers including stations in alphabetical order."
+     * )
+     * @Get("/api/v1/rivers", defaults={"_format"="json"})
+     * @View(serializerGroups={"river", "station"})
+     */
+    public
+    function getRiverAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $sections = $em->getRepository('AppBundle:River')->findBy([], ['name' => 'ASC']);
+        return $sections;
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This displays a river with stations in alphabetical order."
+     * )
+     * @Get("/api/v1/rivers/{id}", defaults={"_format"="json"})
+     * @View(serializerGroups={"river", "station"})
+     */
+    public
+    function getRiverDetailAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $sections = $em->getRepository('AppBundle:River')->find($id);
+        return $sections;
+    }
+}

@@ -19,21 +19,20 @@ class River
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Serializer\Groups({"river"})
+     * @Serializer\Groups({"river","river_station"})
      */
     private $id;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string",  nullable=false)
-     * @Serializer\Groups({"river"})
      */
     private $shortname;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string",  nullable=false)
-     * @Serializer\Groups({"river"})
+     * @Serializer\Groups({"river","river_station"})
      */
     private $name;
 
@@ -41,7 +40,7 @@ class River
      * One Station has Many Measurements.
      * @ORM\OneToMany(targetEntity="Station", mappedBy="river")
      * @ORM\OrderBy({"city" = "ASC"})
-     * @Serializer\Groups({"river","station"})
+     * @Serializer\Groups({"river_station"})
      */
     private $stations;
 

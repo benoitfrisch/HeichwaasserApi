@@ -19,6 +19,7 @@ class Station
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"station"})
      */
     private $id;
 
@@ -26,41 +27,46 @@ class Station
      * Many Measurements have One Station.
      * @ORM\ManyToOne(targetEntity="River", inversedBy="stations")
      * @ORM\JoinColumn(name="river_id", referencedColumnName="id")
-     * @Serializer\Groups({"measurement"})
+     * @Serializer\Groups({"station_river"})
      */
     private $river;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string",  nullable=false)
-     * @Serializer\Groups({"station"})
      */
     private $shortname;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string",  nullable=false)
-     * @Serializer\Groups({"station"})
+     * @Serializer\Groups({"station","station_measurement"})
      */
     private $city;
 
     /**
+     * @ORM\Column(type="string",  nullable=true)
+     * @Serializer\Groups({"station","station_measurement"})
+     */
+    private $supplement;
+
+    /**
      * @ORM\Column(type="float",  nullable=true)
-     * @Serializer\Groups({"station"})
+     * @Serializer\Groups({"station","station_measurement"})
      */
     private $latitude;
 
     /**
      * @ORM\Column(type="float",  nullable=true)
-     * @Serializer\Groups({"station"})
+     * @Serializer\Groups({"station","station_measurement"})
      */
     private $longitude;
 
     /**
      * One Station has Many Measurements.
      * @ORM\OneToMany(targetEntity="Measurement", mappedBy="station")
-     * @ORM\OrderBy({"timestamp" = "ASC"})
-     * @Serializer\Groups({"station"})
+     * @ORM\OrderBy({"timestamp" = "DESC"})
+     * @Serializer\Groups({"measurement"})
      */
     private $measurements;
 
@@ -194,4 +200,23 @@ class Station
         $this->measurements = $measurements;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSupplement()
+    {
+        return $this->supplement;
+    }
+
+    /**
+     * @param mixed $supplement
+     * @return Station
+     */
+    public function setSupplement($supplement)
+    {
+        $this->supplement = $supplement;
+        return $this;
+    }
+
 }
