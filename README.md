@@ -7,15 +7,15 @@ This uses the [Measured data levels](https://data.public.lu/en/datasets/measured
 Documentation
 ------------
 
-###Root
+### Root
 
 ```bash
 https://heichwaasser.lu/api/v1
 ```
  
-###Endpoints
+### Endpoints
 
-####Rivers
+#### Rivers
 * [<code>GET</code> /rivers](https://heichwaasser.lu/api/v1/rivers)
 
 ```bash 
@@ -54,7 +54,7 @@ https://heichwaasser.lu/api/v1
     }
 ]
 ```
-####Stations
+#### Stations
 * [<code>GET</code> /stations](https://heichwaasser.lu/api/v1/stations)
 ```bash 
 [
