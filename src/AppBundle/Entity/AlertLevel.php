@@ -26,7 +26,7 @@ class AlertLevel
 
     /**
      * Many Alert Levels have One Station.
-     * @ORM\ManyToOne(targetEntity="Station", inversedBy="measurements")
+     * @ORM\ManyToOne(targetEntity="Station", inversedBy="alertLevels")
      * @ORM\JoinColumn(name="station_id", referencedColumnName="id")
      */
     private $station;

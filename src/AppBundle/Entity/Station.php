@@ -73,7 +73,7 @@ class Station
     /**
      * One Station has Many Measurements.s
      * @ORM\OneToMany(targetEntity="AlertLevel", mappedBy="station")
-     * @ORM\OrderBy({"name" = "DESC"})
+     * @ORM\OrderBy({"value" = "ASC"})
      * @Serializer\Groups({"station"})
      */
     private $alertLevels;

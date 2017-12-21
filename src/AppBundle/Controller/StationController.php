@@ -33,7 +33,7 @@ class StationController extends Controller
      *  description="This displays all a station with measurements."
      * )
      * @Get("/api/v1/stations/{id}", defaults={"_format"="json"})
-     * @View(serializerGroups={"station","river","station_river","measurement"})
+     * @View(serializerGroups={"station","river","station_river","measurement", "alert"})
      */
     public
     function getRiverDetailAction($id)
