@@ -17,7 +17,7 @@ class StationController extends Controller
      *  description="This displays all stations in alphabetical order."
      * )
      * @Get("/api/v1/stations", defaults={"_format"="json"})
-     * @View(serializerGroups={"station","river","station_river"})
+     * @View(serializerGroups={"station","river","station_river","alert"})
      */
     public
     function getStationAction()

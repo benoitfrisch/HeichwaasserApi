@@ -48,7 +48,7 @@ class ImportCommand extends ContainerAwareCommand
         echo array_search("## Exported", $currentArray);
 
         //iterate through array
-        for ($i = 0; $i < count($currentArray); $i++) {
+        for ($i = 0; $i < count($currentArray) - 1; $i++) {
             $line = utf8_encode($currentArray[$i]);
             echo $line . "\n";
             if (strpos($line, "SNAME") == 1) {
@@ -87,20 +87,23 @@ class ImportCommand extends ContainerAwareCommand
 
             } else if (substr($line, 0, 1) != "#") {
                 $measureArray = explode(" ", $line);
-                $timestamp = DateTime::createFromFormat('YmdHis', $measureArray[0]);
-                $value = $measureArray[1];
-                echo $this->station;
+                if (count($measureArray) >= 2) {
+                    $timestamp = DateTime::createFromFormat('YmdHis', $measureArray[0]);
+                    $value = $measureArray[1];
+                    echo $this->station;
 
-                $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
+                    $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
 
-                if (empty($measurement)) {
-                    $measurement = new Measurement();
-                    $measurement->setStation($this->station);
-                    $measurement->setUnit("cm");
-                    $measurement->setValue($value);
-                    $measurement->setTimestamp($timestamp);
-                    $this->em->persist($measurement);
-                    $this->em->flush();
+                    if (empty($measurement)) {
+                        $measurement = new Measurement();
+                        $measurement->setStation($this->station);
+                        $measurement->setUnit("cm");
+                        $measurement->setValue($value);
+                        $measurement->setTimestamp($timestamp);
+                        $this->em->persist($measurement);
+                        $this->em->flush();
+                    }
+
                 }
             }
 

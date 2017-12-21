@@ -110,3 +110,4 @@ easy_admin:
         - AppBundle\Entity\River
         - AppBundle\Entity\Station
         - AppBundle\Entity\Measurement
+        - AppBundle\Entity\AlertLevel

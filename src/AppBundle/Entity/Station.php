@@ -70,6 +70,15 @@ class Station
      */
     private $measurements;
 
+    /**
+     * One Station has Many Measurements.s
+     * @ORM\OneToMany(targetEntity="AlertLevel", mappedBy="station")
+     * @ORM\OrderBy({"name" = "DESC"})
+     * @Serializer\Groups({"station"})
+     */
+    private $alertLevels;
+
+
     public function __toString()
     {
         return $this->city;
@@ -219,4 +228,21 @@ class Station
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAlertLevels()
+    {
+        return $this->alertLevels;
+    }
+
+    /**
+     * @param mixed $alertLevels
+     * @return Station
+     */
+    public function setAlertLevels($alertLevels)
+    {
+        $this->alertLevels = $alertLevels;
+        return $this;
+    }
 }

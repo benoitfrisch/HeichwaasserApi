@@ -7,10 +7,90 @@
                 {% image '@AppBundle/Resources/public/images/logo.png' %}
                 <center><img src="{{ asset_url }}" width="50%" alt="Héichwaaser Logo"></center>
                 {% endimage %}
-                <h3>API</h3>
-                <h4>Root</h4>
-                <pre>https://heichwaasser.lu/api/v1/</pre>
-                <code>/api/v1/stations</code>
+                <br>
+                <h1>API</h1>
+                <h2>Root</h2>
+                <pre>https://heichwaasser.lu/api/v1</pre>
+                <h2>Endpoints</h2>
+                <h3>Rivers</h3>
+                <ul>
+                    <li>
+                        <code>GET /rivers</code><br><br>
+                        <pre>[
+    {
+        "id": 28,
+        "name": "Alzette",
+        "stations": [
+            {
+                "id": 81,
+                "city": "Ettelbr\u00fcck",
+                "supplement": "...",
+                "latitude": ...,
+                "longitude": ...
+            }
+        ]
+    }
+]</pre>
+                    </li>
+                    <li>
+                        <code>GET /rivers/:id</code>
+                        <pre>[
+    {
+        "id": 28,
+        "name": "Alzette",
+        "stations": [
+            {
+                "id": 81,
+                "city": "Ettelbr\u00fcck",
+                "supplement": "...",
+                "latitude": ...,
+                "longitude": ...
+            }
+        ]
+    }
+]</pre>
+                    </li>
+                </ul>
+                <h3>Stations</h3>
+                <ul>
+                    <li>
+                        <code>GET /stations</code><br><br>
+                        <pre>[
+    {
+        "id": 86,
+        "river": {
+            "id": 21,
+            "name": "S\u00fbre"
+        },
+        "city": "Bigonville",
+        "supplement": "...",
+        "latitude": ...,
+        "longitude": ...
+    },...
+]                        </pre>
+                    </li>
+                    <li>
+                        <code>GET /stations/:id</code>
+                        <pre>{
+    "id": 86,
+    "river": {
+        "id": 21,
+        "name": "S\u00fbre"
+    },
+    "city": "Bigonville",
+    "supplement": "...",
+    "latitude": ...,
+    "longitude": ...
+    "measurements": [
+        {
+            "timestamp": "2017-12-21T18:00:00+0000",
+            "value": 124.4,
+            "unit": "cm"
+        },..
+    ]
+}</pre>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -20,6 +100,7 @@
     <style>
         body {
             background: #91c4e4;
+            background-attachment: fixed;
         {% image '@AppBundle/Resources/public/images/background.png' %} background-image: url({{ asset_url }});
         {% endimage %} font: 18px/1.5 sans-serif;
         }
