@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-itunes-app" content="app-id=616867924, affiliate-data=myAffiliateData, app-argument=myURL">
+
+    <meta name="keywords" content="heichwaasser, inondations, fresh, benoit frisch">
+    <meta name="description"
+          content="API de inondations.lu">
+    <meta name="author" content="fresh.lu">
+    {% block stylesheets %}
+    {% endblock %}
+    {% block stylesheetsMain %}
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39475223-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-39475223-2');
+        </script>
+    {% endblock %}
+    <title>{% block title %}heichwaasser.lu{% endblock %}</title>
+</head>
+<body>
+<div class="containers">
+
+
+    <div class="main">
+        {% block body %}
+        {% endblock %}
+        {% block links %}
+            <div class="links" style="text-align: center">
+                <a href="https://itunes.apple.com/lu/app/heichwaasser/id616867924"
+                   target="_blank">
+                    {% image '@AppBundle/Resources/public/images/appstore.png' %}
+                    <img src="{{ asset_url }}" height="60" alt="appstore logo">
+                    {% endimage %}
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=lu.heichwaasser.app" target="_blank">
+                    {% image '@AppBundle/Resources/public/images/playstore.png' %}
+                    <img src="{{ asset_url }}" height="60" alt="playstore logo">
+                    {% endimage %}
+                </a>
+            </div>
+        {% endblock %}
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="row hidden-xs hidden-sm">
+            <div class="col-md-4">
+                <p class="text-muted text-left">
+                    <a href="https://facebook.com/heichwaasser" target="_blank">
+                        {% image '@AppBundle/Resources/public/images/fb.png' %}
+                        <img src="{{ asset_url }}" width="115" alt="heichwaasser facebook" style="margin-top: 0px">
+                        {% endimage %}
+                    </a>
+
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p class="text-muted text-center">
+                    <a href="mailto:info@heichwaasser.lu" target="_blank" class="text-muted">
+                        <span class="glyphicon glyphicon-envelope"></span> Contact</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p class="text-muted text-right">powered by <a href="https://fresh.lu" target="_blank"
+                                                               class="text-muted">
+                        {% image '@AppBundle/Resources/public/images/fresh.png' %}
+                        <img src="{{ asset_url }}" height="25px"
+                             style="padding-bottom: 7px; margin-left: -3px"
+                             alt="fresh.lu">
+                        {% endimage %}</a>
+                </p>
+            </div>
+        </div>
+
+        <p class="text-muted visible-xs-* visible-sm-* hidden-md hidden-lg"><a href="https://facebook.com/heichwaasser"
+                                                                               target="_blank">{% image '@AppBundle/Resources/public/images/fb.png' %}
+                <img src="{{ asset_url }}" width="115" alt="heichwaasser facebook" style="margin-top: 0px">
+                {% endimage %}</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="mailto:info@heichwaasser.lu" target="_blank"
+                                                                class="text-muted">
+                <span class="glyphicon glyphicon-envelope"></span> Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;by <a
+                    href="https://fresh.lu" target="_blank"
+                    class="text-muted">  {% image '@AppBundle/Resources/public/images/fresh.png' %}
+                <img src="{{ asset_url }}" height="25px"
+                     style="padding-bottom: 7px; margin-left: -3px"
+                     alt="fresh.lu"></a>
+            {% endimage %}</a></p>
+
+    </div>
+</footer>
+</body>
+</html>

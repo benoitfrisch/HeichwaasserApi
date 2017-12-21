@@ -1,0 +1,102 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                {% image '@AppBundle/Resources/public/images/logo.png' %}
+                <center><img src="{{ asset_url }}" width="50%" alt="Héichwaaser Logo"></center>
+                {% endimage %}
+                <h3>API</h3>
+                <h4>Root</h4>
+                <pre>https://heichwaasser.lu/api/v1/</pre>
+                <code>/api/v1/stations</code>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            background: #91c4e4;
+        {% image '@AppBundle/Resources/public/images/background.png' %} background-image: url({{ asset_url }});
+        {% endimage %} font: 18px/1.5 sans-serif;
+        }
+
+        #wrapper {
+            background: rgba(255, 255, 255, 0.85);
+            margin: 1em auto;
+            max-width: 800px;
+            border-radius: 25px;
+            width: 95%;
+        }
+
+        h1, h2 {
+            line-height: 1.2;
+            margin: 0 0 .5em;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 21px;
+            margin-bottom: 1em;
+        }
+
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        a {
+            color: #0000F0;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        #container {
+            padding: 2em;
+        }
+
+        #welcome, #status {
+            margin-bottom: 2em;
+        }
+
+        #welcome h1 span {
+            display: block;
+            font-size: 75%;
+        }
+
+        @media (min-width: 768px) {
+            #wrapper {
+                width: 80%;
+                margin: 2em auto;
+            }
+
+            #status a, #next a {
+                display: block;
+            }
+
+            @-webkit-keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            @keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+    </style>
+{% endblock %}
