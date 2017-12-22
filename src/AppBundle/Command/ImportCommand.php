@@ -78,7 +78,7 @@ class ImportCommand extends ContainerAwareCommand
                     $river = $this->em->getRepository('AppBundle:River')->findOneBy(['shortname' => $riverName]);
                     $station = $this->em->getRepository('AppBundle:Station')->findOneBy(['shortname' => $stationName]);
 
-                    if (empty($river)) {
+                    if (empty($river) && empty($station)) {
                         $river = new River();
                         $river->setName($riverName);
                         $river->setShortname($riverName);
