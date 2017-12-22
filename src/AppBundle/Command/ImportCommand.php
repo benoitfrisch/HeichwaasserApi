@@ -72,8 +72,6 @@ class ImportCommand extends ContainerAwareCommand
                     $stationName = substr($nameArray[0], strlen("#SNAME"));
                     $riverName = substr($nameArray[4], strlen("SWATER"));
 
-                    echo $stationName . "-" . $riverName . "\n";
-
                     //check if river and station exist
                     $river = $this->em->getRepository('AppBundle:River')->findOneBy(['shortname' => $riverName]);
                     $station = $this->em->getRepository('AppBundle:Station')->findOneBy(['shortname' => $stationName]);
@@ -98,6 +96,10 @@ class ImportCommand extends ContainerAwareCommand
                 }
                 $this->river = $river;
                 $this->station = $station;
+
+
+                echo $station->getCity() . "-" . $river->getName() . "\n";
+
                 $progress->advance();
 
 
