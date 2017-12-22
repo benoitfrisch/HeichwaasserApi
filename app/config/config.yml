@@ -120,7 +120,7 @@ easy_admin:
                            - latitude
                            - longitude
                            - measurements
-                      sort: ['city', 'DESC']
+                      sort: ['city', 'ASC']
             edit:
                      fields:
                            - city
