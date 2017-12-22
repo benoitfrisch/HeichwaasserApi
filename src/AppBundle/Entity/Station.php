@@ -64,7 +64,7 @@ class Station
 
     /**
      * One Station has Many Measurements.
-     * @ORM\OneToMany(targetEntity="Measurement", mappedBy="station")
+     * @ORM\OneToMany(targetEntity="Measurement", mappedBy="station",cascade={"remove"})
      * @ORM\OrderBy({"timestamp" = "DESC"})
      * @Serializer\Groups({"measurement"})
      */
