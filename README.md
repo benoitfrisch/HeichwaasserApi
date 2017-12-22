@@ -3,6 +3,7 @@ Héichwaasser API
 
 This uses the [Measured water levels](https://data.public.lu/en/datasets/measured-water-levels/) and creates a history and a JSON Api.
 
+This API is also published on [data.public.lu](https://data.public.lu/en/reuses/heichwaasser-api/).
 
 Documentation
 ------------
