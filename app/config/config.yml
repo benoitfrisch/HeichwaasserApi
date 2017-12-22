@@ -107,7 +107,33 @@ assetic:
 easy_admin:
     site_name: "Héichwaasser"
     entities:
-        - AppBundle\Entity\River
-        - AppBundle\Entity\Station
-        - AppBundle\Entity\Measurement
-        - AppBundle\Entity\AlertLevel
+        River:
+            class: AppBundle\Entity\River
+        Station:
+            class: AppBundle\Entity\Station
+            label: 'Station'
+            list:
+                      fields:
+                           - city
+                           - supplement
+                           - latitude
+                           - longitude
+                           - measurements
+                      sort: ['city', 'DESC']
+            edit:
+                     fields:
+                           - city
+                           - supplement
+                           - latitude
+                           - longitude
+            new:
+                      fields:
+                           - city
+                           - supplement
+                           - latitude
+                           - longitude
+                           - measurements
+        Measurement:
+            class: AppBundle\Entity\Measurement
+        AlertLevel:
+            class: AppBundle\Entity\AlertLevel
