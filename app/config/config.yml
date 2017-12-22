@@ -115,6 +115,7 @@ easy_admin:
             list:
                       fields:
                            - city
+                           - river
                            - supplement
                            - latitude
                            - longitude
@@ -123,12 +124,16 @@ easy_admin:
             edit:
                      fields:
                            - city
+                           - river
+                           - shortname
                            - supplement
                            - latitude
                            - longitude
             new:
                       fields:
                            - city
+                           - river
+                           - shortname
                            - supplement
                            - latitude
                            - longitude
