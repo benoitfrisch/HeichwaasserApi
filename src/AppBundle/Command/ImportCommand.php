@@ -8,6 +8,7 @@ use AppBundle\Entity\Station;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -17,8 +18,18 @@ class ImportCommand extends ContainerAwareCommand
      * @var EntityManager
      */
     private $em;
+    /**
+     * @var Station
+     */
     private $station;
+    /**
+     * @var River
+     */
     private $river;
+    /**
+     * @var ProgressBar
+     */
+    private $progressM;
 
 
     protected function configure()
@@ -45,15 +56,18 @@ class ImportCommand extends ContainerAwareCommand
 
         $currentArray = explode("\n", $currentFile);
 
-        echo array_search("## Exported", $currentArray);
 
+        $progress = new ProgressBar($output, 37);
+        // start and displays the progress bar
+        $progress->start();
+        $progress->setFormat("normal");
+        $progress->setMessage("Importing all stations...");
         //iterate through array
         for ($i = 0; $i < count($currentArray) - 1; $i++) {
             $line = utf8_encode($currentArray[$i]);
-            echo $line . "\n";
+            //echo $line . "\n";
             if (strpos($line, "SNAME") == 1) {
                 $nameArray = explode(";", $line);
-                print_r($nameArray);
                 if (count($nameArray) > 5) {
                     $stationName = substr($nameArray[0], strlen("#SNAME"));
                     $riverName = substr($nameArray[4], strlen("SWATER"));
@@ -84,15 +98,22 @@ class ImportCommand extends ContainerAwareCommand
                 }
                 $this->river = $river;
                 $this->station = $station;
+                $progress->advance();
 
+
+            } else if (substr($line, 0, strlen("#RSTATEW6;*;")) == "#RSTATEW6;*;") {
+                //last line before measurements
+                $this->progressM = new ProgressBar($output);
+                $this->progressM->start();
+                $this->progressM->setFormat("normal");
+                $this->progressM->setMessage("Importing all measurements...");
             } else if (substr($line, 0, 1) != "#") {
                 $measureArray = explode(" ", $line);
                 if (count($measureArray) >= 2) {
                     $timestamp = DateTime::createFromFormat('YmdHis', $measureArray[0]);
                     $value = $measureArray[1];
-                    echo $this->station;
-
                     $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
+
 
                     if (empty($measurement)) {
                         $measurement = new Measurement();
@@ -102,11 +123,21 @@ class ImportCommand extends ContainerAwareCommand
                         $measurement->setTimestamp($timestamp);
                         $this->em->persist($measurement);
                         $this->em->flush();
+                        $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
+                        $this->progressM->advance();
                     }
 
+                }
+            } else if (substr($line, 0, strlen("## Exported")) == "## Exported") {
+                //first line of station block, stop progress bar for measurements
+                if ($this->progressM != null) {
+                    $this->progressM->finish();
                 }
             }
 
         }
+        $progress->finish();
+        $output->writeln("Finished import.");
+        $output->writeln("##################################");
     }
 }
