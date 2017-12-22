@@ -5,7 +5,7 @@
         <div id="container">
             <div id="welcome">
                 {% image '@AppBundle/Resources/public/images/logo.png' %}
-                <center><img src="{{ asset_url }}" width="50%" alt="Héichwaaser Logo"></center>
+                <center><img src="{{ asset_url }}" width="75%" alt="Héichwaaser Logo"></center>
                 {% endimage %}
                 <br><br>
                 <div class="links" style="text-align: center">
@@ -119,8 +119,14 @@
 }</pre>
                     </li>
                 </ul>
+                <br><br>
+                {% image '@AppBundle/Resources/public/images/GitHub.png' %}
+                <center><a href="https://github.com/benoitfrisch/HeichwaasserApi" target="_blank"><img
+                                src="{{ asset_url }}" width="150" alt="Github Logo"></a></center>
+                {% endimage %}
             </div>
         </div>
+
     </div>
     <br><br>
 {% endblock %}
