@@ -16,3 +16,5 @@
 /vendor/
 /web/bundles/
 .idea
+/composer.phar
+/web/images/
