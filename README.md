@@ -22,35 +22,87 @@ https://heichwaasser.lu/api/v1
 ```bash 
 [
     {
-        "id": 28,
+        "id": 17,
         "name": "Alzette",
         "stations": [
             {
-                "id": 81,
+                "id": 61,
                 "city": "Ettelbr\u00fcck",
-                "supplement": "...",
-                "latitude": ...,
-                "longitude": ...
-            }
+                "latitude": 49.84373,
+                "longitude": 6.09713,
+                "current": {
+                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "value": 69.8,
+                    "unit": "cm"
+                },
+                "minimum": {
+                    "timestamp": "2017-12-27T15:30:00+0000",
+                    "value": 65.5,
+                    "unit": "cm"
+                },
+                "maximum": {
+                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "value": 69.8,
+                    "unit": "cm"
+                },
+                "alert_levels": [
+                    {
+                        "name": "Level 1",
+                        "value": 180,
+                        "unit": "cm"
+                    },
+                    {
+                        "name": "Level 2",
+                        "value": 230,
+                        "unit": "cm"
+                    }
+                ]
+            },...
         ]
     }
 ]
 ```
-* [<code>GET</code> /rivers/:id](https://heichwaasser.lu/api/v1/rivers/{id})
+* [<code>GET</code> /rivers/:id](https://heichwaasser.lu/api/v1/rivers/17)
 
 ```bash 
 [
     {
-        "id": 28,
+        "id": 17,
         "name": "Alzette",
         "stations": [
             {
-                "id": 81,
+                "id": 61,
                 "city": "Ettelbr\u00fcck",
-                "supplement": "...",
-                "latitude": ...,
-                "longitude": ...
-            }
+                "latitude": 49.84373,
+                "longitude": 6.09713,
+                "current": {
+                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "value": 69.8,
+                    "unit": "cm"
+                },
+                "minimum": {
+                    "timestamp": "2017-12-27T15:30:00+0000",
+                    "value": 65.5,
+                    "unit": "cm"
+                },
+                "maximum": {
+                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "value": 69.8,
+                    "unit": "cm"
+                },
+                "alert_levels": [
+                    {
+                        "name": "Level 1",
+                        "value": 180,
+                        "unit": "cm"
+                    },
+                    {
+                        "name": "Level 2",
+                        "value": 230,
+                        "unit": "cm"
+                    }
+                ]
+            },...
         ]
     }
 ]
@@ -60,51 +112,89 @@ https://heichwaasser.lu/api/v1
 ```bash 
 [
     {
-        "id": 86,
+        "id": 81,
         "river": {
-            "id": 21,
+            "id": 3,
             "name": "S\u00fbre"
         },
         "city": "Bigonville",
-        "supplement": "...",
-        "latitude": ...,
-        "longitude": ...,
+        "latitude": 49.86875,
+        "longitude": 5.79996,
+        "current": {
+            "timestamp": "2017-12-27T16:45:00+0000",
+            "value": 108.2,
+            "unit": "cm"
+        },
+        "minimum": {
+            "timestamp": "2017-12-27T16:45:00+0000",
+            "value": 108.2,
+            "unit": "cm"
+        },
+        "maximum": {
+            "timestamp": "2017-12-27T16:45:00+0000",
+            "value": 108.2,
+            "unit": "cm"
+        },
         "alert_levels": [
             {
-                "name": "Level1",
-                "value": 100,
+                "name": "Level 1",
+                "value": 250,
+                "unit": "cm"
+            },
+            {
+                "name": "Level 2",
+                "value": 300,
                 "unit": "cm"
             }
         ]
     },...
 ]
 ```
-* [<code>GET</code> /stations/:id](https://heichwaasser.lu/api/v1/stations/{id})
+* [<code>GET</code> /stations/:id](https://heichwaasser.lu/api/v1/stations/81)
 ```bash 
 {
-    "id": 86,
+    "id": 81,
     "river": {
-        "id": 21,
+        "id": 3,
         "name": "S\u00fbre"
     },
     "city": "Bigonville",
-    "supplement": "...",
-    "latitude": ...,
-    "longitude": ...,
+    "latitude": 49.86875,
+    "longitude": 5.79996,
+    "current": {
+        "timestamp": "2017-12-27T16:45:00+0000",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "minimum": {
+        "timestamp": "2017-12-27T16:45:00+0000",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "maximum": {
+        "timestamp": "2017-12-27T16:45:00+0000",
+        "value": 108.2,
+        "unit": "cm"
+    },
     "measurements": [
         {
-            "timestamp": "2017-12-21T18:00:00+0000",
-            "value": 124.4,
+            "timestamp": "2017-12-27T16:45:00+0000",
+            "value": 108.2,
             "unit": "cm"
         },..
     ],
     "alert_levels": [
-            {
-                "name": "Level1",
-                "value": 100,
-                "unit": "cm"
-            }
-        ]
+        {
+            "name": "Level 1",
+            "value": 250,
+            "unit": "cm"
+        },
+        {
+            "name": "Level 2",
+            "value": 300,
+            "unit": "cm"
+        }
+    ]
 } 
 ```
 
