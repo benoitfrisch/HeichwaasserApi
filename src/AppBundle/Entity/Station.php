@@ -319,6 +319,16 @@ class Station
     }
 
     /**
+     * @param mixed $minimum
+     * @return Station
+     */
+    public function setMinimum($minimum)
+    {
+        $this->minimum = $minimum;
+        return $this;
+    }
+
+    /**
      * @param Measurement $measurement
      * @return Station
      */
@@ -341,4 +351,13 @@ class Station
         return $this->maximum;
     }
 
+    /**
+     * @param mixed $maximum
+     * @return Station
+     */
+    public function setMaximum($maximum)
+    {
+        $this->maximum = $maximum;
+        return $this;
+    }
 }
