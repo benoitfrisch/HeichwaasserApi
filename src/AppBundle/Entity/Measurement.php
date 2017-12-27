@@ -30,27 +30,6 @@ class Measurement
     private $station;
 
     /**
-     * One Measurement has One Station.
-     * @ORM\OneToOne(targetEntity="Station", inversedBy="current")
-     * @ORM\JoinColumn(name="current_station_id", referencedColumnName="id")
-     */
-    private $currentStation;
-
-    /**
-     * One Measurement has One Station.
-     * @ORM\OneToOne(targetEntity="Station", inversedBy="minimum")
-     * @ORM\JoinColumn(name="min_station_id", referencedColumnName="id")
-     */
-    private $minStation;
-
-    /**
-     * One Measurement has One Station.
-     * @ORM\OneToOne(targetEntity="Station", inversedBy="maximum")
-     * @ORM\JoinColumn(name="max_station_id", referencedColumnName="id")
-     */
-    private $maxStation;
-
-    /**
      * @var \DateTime
      * @Assert\DateTime()
      * @ORM\Column(type="datetime",  nullable=true)
@@ -168,60 +147,4 @@ class Measurement
         $this->unit = $unit;
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCurrentStation()
-    {
-        return $this->currentStation;
-    }
-
-    /**
-     * @param mixed $currentStation
-     * @return Measurement
-     */
-    public function setCurrentStation($currentStation)
-    {
-        $this->currentStation = $currentStation;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMinStation()
-    {
-        return $this->minStation;
-    }
-
-    /**
-     * @param mixed $minStation
-     * @return Measurement
-     */
-    public function setMinStation($minStation)
-    {
-        $this->minStation = $minStation;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMaxStation()
-    {
-        return $this->maxStation;
-    }
-
-    /**
-     * @param mixed $maxStation
-     * @return Measurement
-     */
-    public function setMaxStation($maxStation)
-    {
-        $this->maxStation = $maxStation;
-        return $this;
-    }
-
-
 }

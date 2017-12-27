@@ -63,23 +63,23 @@ class Station
     private $longitude;
 
     /**
-     * One Station has One Current Measurement.
-     * @ORM\OneToOne(targetEntity="Measurement", mappedBy="currentStation")
-     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
+     * One Station has one current measurement.
+     * @ORM\OneToOne(targetEntity="Measurement")
+     * @ORM\JoinColumn(name="current_id", referencedColumnName="id")
      */
     private $current;
 
     /**
-     * One Station has One Min Measurement.
-     * @ORM\OneToOne(targetEntity="Measurement", mappedBy="minStation")
-     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
+     * One Station has one min measurement.
+     * @ORM\OneToOne(targetEntity="Measurement")
+     * @ORM\JoinColumn(name="minimum_id", referencedColumnName="id")
      */
     private $minimum;
 
     /**
-     * One Station has One Max Measurement.
-     * @ORM\OneToOne(targetEntity="Measurement", mappedBy="maxStation")
-     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
+     * One Station has one max measurement.
+     * @ORM\OneToOne(targetEntity="Measurement")
+     * @ORM\JoinColumn(name="maximum_id", referencedColumnName="id")
      */
     private $maximum;
 
