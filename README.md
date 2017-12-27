@@ -8,6 +8,8 @@ This API is also published on [data.public.lu](https://data.public.lu/en/reuses/
 Documentation
 ------------
 
+Important notice: The time is given in Western European Time all year, the European Summer Time is not considered. You may have to adapt the time to your needs.
+
 ### Root
 
 ```bash
