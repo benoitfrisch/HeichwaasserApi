@@ -32,7 +32,7 @@ class RiverController extends Controller
      *  description="This displays a river with stations in alphabetical order."
      * )
      * @Get("/api/v1/rivers/{id}", defaults={"_format"="json"})
-     * @View(serializerGroups={"river","river_station", "station"})
+     * @View(serializerGroups={"river","river_station", "station","alert","oneMeasurement"})
      */
     public
     function getRiverDetailAction($id)
