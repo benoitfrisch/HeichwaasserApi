@@ -66,6 +66,7 @@ class Station
      * One Station has one current measurement.
      * @ORM\OneToOne(targetEntity="Measurement")
      * @ORM\JoinColumn(name="current_id", referencedColumnName="id")
+     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
      */
     private $current;
 
@@ -73,6 +74,7 @@ class Station
      * One Station has one min measurement.
      * @ORM\OneToOne(targetEntity="Measurement")
      * @ORM\JoinColumn(name="minimum_id", referencedColumnName="id")
+     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
      */
     private $minimum;
 
@@ -80,6 +82,7 @@ class Station
      * One Station has one max measurement.
      * @ORM\OneToOne(targetEntity="Measurement")
      * @ORM\JoinColumn(name="maximum_id", referencedColumnName="id")
+     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
      */
     private $maximum;
 
