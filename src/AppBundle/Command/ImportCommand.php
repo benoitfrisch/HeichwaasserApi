@@ -127,11 +127,20 @@ class ImportCommand extends ContainerAwareCommand
                         $measurement->setUnit("cm");
                         $measurement->setValue($value);
                         $measurement->setTimestamp($timestamp);
+
                         $this->em->persist($measurement);
                         $this->em->flush();
+
+
                         $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
                         $this->progressM->advance();
                     }
+
+
+                    $this->station->updateStats($measurement);
+                    //$output->writeln($this->station->getCurrent() . $this->station->getMinimum() . $this->station->getMaximum());
+                    $this->em->persist($this->station);
+                    $this->em->flush();
 
                 }
             } else if (substr($line, 0, strlen("## Exported")) == "## Exported") {

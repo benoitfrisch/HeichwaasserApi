@@ -17,7 +17,7 @@ class StationController extends Controller
      *  description="This displays all stations in alphabetical order."
      * )
      * @Get("/api/v1/stations", defaults={"_format"="json"})
-     * @View(serializerGroups={"station","river","station_river","alert"})
+     * @View(serializerGroups={"station","river","station_river","alert","oneMeasurement"})
      */
     public
     function getStationAction()
@@ -33,7 +33,7 @@ class StationController extends Controller
      *  description="This displays all a station with measurements."
      * )
      * @Get("/api/v1/stations/{id}", defaults={"_format"="json"})
-     * @View(serializerGroups={"station","river","station_river","measurement", "alert"})
+     * @View(serializerGroups={"station","river","station_river","measurement", "alert","oneMeasurement"})
      */
     public
     function getRiverDetailAction($id)

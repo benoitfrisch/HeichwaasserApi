@@ -63,6 +63,27 @@ class Station
     private $longitude;
 
     /**
+     * One Station has One Current Measurement.
+     * @ORM\OneToOne(targetEntity="Measurement", mappedBy="currentStation")
+     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
+     */
+    private $current;
+
+    /**
+     * One Station has One Min Measurement.
+     * @ORM\OneToOne(targetEntity="Measurement", mappedBy="minStation")
+     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
+     */
+    private $minimum;
+
+    /**
+     * One Station has One Max Measurement.
+     * @ORM\OneToOne(targetEntity="Measurement", mappedBy="maxStation")
+     * @Serializer\Groups({"station","station_measurement","oneMeasurement"})
+     */
+    private $maximum;
+
+    /**
      * One Station has Many Measurements.
      * @ORM\OneToMany(targetEntity="Measurement", mappedBy="station",cascade={"remove"})
      * @ORM\OrderBy({"timestamp" = "DESC"})
@@ -245,4 +266,79 @@ class Station
         $this->alertLevels = $alertLevels;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * @param mixed $current
+     * @return Station
+     */
+    public function setCurrent($current)
+    {
+        $this->current = $current;
+        return $this;
+    }
+
+    /**
+     * @param Measurement $measurement
+     */
+    public function updateStats(Measurement $measurement)
+    {
+        $this->setCurrent($measurement);
+        $this->updateMinimum($measurement);
+        $this->updateMaximum($measurement);
+    }
+
+    /**
+     * @param Measurement $measurement
+     * @return Station
+     */
+    public function updateMinimum(Measurement $measurement)
+    {
+        if ($this->getMinimum() == null) {
+            $this->minimum = $measurement;
+            return $this;
+        } else if ($measurement->getValue() < $this->getMinimum()->getValue()) {
+            $this->minimum = $measurement;
+            return $this;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMinimum()
+    {
+        return $this->minimum;
+    }
+
+    /**
+     * @param Measurement $measurement
+     * @return Station
+     */
+    public function updateMaximum(Measurement $measurement)
+    {
+        if ($this->getMaximum() == null) {
+            $this->maximum = $measurement;
+            return $this;
+        } else if ($measurement->getValue() > $this->getMaximum()->getValue()) {
+            $this->maximum = $measurement;
+            return $this;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaximum()
+    {
+        return $this->maximum;
+    }
+
 }
