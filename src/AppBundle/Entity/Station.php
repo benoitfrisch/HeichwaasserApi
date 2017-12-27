@@ -81,7 +81,7 @@ class Station
 
     public function __toString()
     {
-        return $this->city;
+        return $this->city . " - " . $this->river;
     }
 
     /**
