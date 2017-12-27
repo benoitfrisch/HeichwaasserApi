@@ -120,6 +120,9 @@ easy_admin:
                            - latitude
                            - longitude
                            - measurements
+                           - minimum
+                           - maximum
+                           - current
                       sort: ['city', 'ASC']
             edit:
                      fields:
@@ -129,6 +132,9 @@ easy_admin:
                            - supplement
                            - latitude
                            - longitude
+                           - minimum
+                           - maximum
+                           - current
             new:
                       fields:
                            - city
@@ -138,6 +144,9 @@ easy_admin:
                            - latitude
                            - longitude
                            - measurements
+                           - minimum
+                           - maximum
+                           - current
         Measurement:
             class: AppBundle\Entity\Measurement
         AlertLevel:
