@@ -33,17 +33,17 @@ https://heichwaasser.lu/api/v1
                 "latitude": 49.84373,
                 "longitude": 6.09713,
                 "current": {
-                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "timestamp": "2017-12-27T16:45:00",
                     "value": 69.8,
                     "unit": "cm"
                 },
                 "minimum": {
-                    "timestamp": "2017-12-27T15:30:00+0000",
+                    "timestamp": "2017-12-27T15:30:00",
                     "value": 65.5,
                     "unit": "cm"
                 },
                 "maximum": {
-                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "timestamp": "2017-12-27T16:45:00",
                     "value": 69.8,
                     "unit": "cm"
                 },
@@ -78,17 +78,17 @@ https://heichwaasser.lu/api/v1
                 "latitude": 49.84373,
                 "longitude": 6.09713,
                 "current": {
-                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "timestamp": "2017-12-27T16:45:00",
                     "value": 69.8,
                     "unit": "cm"
                 },
                 "minimum": {
-                    "timestamp": "2017-12-27T15:30:00+0000",
+                    "timestamp": "2017-12-27T15:30:00",
                     "value": 65.5,
                     "unit": "cm"
                 },
                 "maximum": {
-                    "timestamp": "2017-12-27T16:45:00+0000",
+                    "timestamp": "2017-12-27T16:45:00",
                     "value": 69.8,
                     "unit": "cm"
                 },
@@ -123,17 +123,17 @@ https://heichwaasser.lu/api/v1
         "latitude": 49.86875,
         "longitude": 5.79996,
         "current": {
-            "timestamp": "2017-12-27T16:45:00+0000",
+            "timestamp": "2017-12-27T16:45:00",
             "value": 108.2,
             "unit": "cm"
         },
         "minimum": {
-            "timestamp": "2017-12-27T16:45:00+0000",
+            "timestamp": "2017-12-27T16:45:00",
             "value": 108.2,
             "unit": "cm"
         },
         "maximum": {
-            "timestamp": "2017-12-27T16:45:00+0000",
+            "timestamp": "2017-12-27T16:45:00",
             "value": 108.2,
             "unit": "cm"
         },
@@ -164,23 +164,23 @@ https://heichwaasser.lu/api/v1
     "latitude": 49.86875,
     "longitude": 5.79996,
     "current": {
-        "timestamp": "2017-12-27T16:45:00+0000",
+        "timestamp": "2017-12-27T16:45:00",
         "value": 108.2,
         "unit": "cm"
     },
     "minimum": {
-        "timestamp": "2017-12-27T16:45:00+0000",
+        "timestamp": "2017-12-27T16:45:00",
         "value": 108.2,
         "unit": "cm"
     },
     "maximum": {
-        "timestamp": "2017-12-27T16:45:00+0000",
+        "timestamp": "2017-12-27T16:45:00",
         "value": 108.2,
         "unit": "cm"
     },
     "measurements": [
         {
-            "timestamp": "2017-12-27T16:45:00+0000",
+            "timestamp": "2017-12-27T16:45:00",
             "value": 108.2,
             "unit": "cm"
         },..

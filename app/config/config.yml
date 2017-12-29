@@ -81,9 +81,14 @@ fos_rest:
     versioning: true
 
 jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d\\TH:i:s" # ATOM
+            default_timezone: "WET" # defaults to whatever timezone set in php.ini or via date_default_ti
     visitors:
         json:
             options: JSON_PRETTY_PRINT
+
 nelmio_api_doc: ~
 
 
