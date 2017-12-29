@@ -63,6 +63,13 @@ class Station
     private $longitude;
 
     /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string",  nullable=false)
+     * @Serializer\Groups({"station","station_measurement"})
+     */
+    private $tendance;
+
+    /**
      * One Station has one current measurement.
      * @ORM\OneToOne(targetEntity="Measurement")
      * @ORM\JoinColumn(name="current_id", referencedColumnName="id")
@@ -361,6 +368,24 @@ class Station
     public function setMaximum($maximum)
     {
         $this->maximum = $maximum;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTendance()
+    {
+        return $this->tendance;
+    }
+
+    /**
+     * @param mixed $tendance
+     * @return Station
+     */
+    public function setTendance($tendance)
+    {
+        $this->tendance = $tendance;
         return $this;
     }
 }

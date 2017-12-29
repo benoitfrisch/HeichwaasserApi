@@ -131,8 +131,17 @@ class ImportCommand extends ContainerAwareCommand
                         $this->em->persist($measurement);
                         $this->em->flush();
 
+                        if ($measurement->getValue() < $this->station->getCurrent()->getValue()) {
+                            $this->station->setTendance("down");
+                        } else if ($measurement->getValue() > $this->station->getCurrent()->getValue()) {
+                            $this->station->setTendance("up");
+                        } else {
+                            $this->station->setTendance("rest");
+                        }
+
 
                         $this->station->updateStats($measurement);
+
                         //$output->writeln($this->station->getCurrent() . $this->station->getMinimum() . $this->station->getMaximum());
                         $this->em->persist($this->station);
                         $this->em->flush();
