@@ -15,13 +15,13 @@ Important notice: The time is given in Western European Time all year, the Europ
 ```bash
 https://heichwaasser.lu/api/v1
 ```
- 
+
 ### Endpoints
 
 #### Rivers
 * [<code>GET</code> /rivers](https://heichwaasser.lu/api/v1/rivers)
 
-```bash 
+```bash
 [
     {
         "id": 17,
@@ -66,7 +66,7 @@ https://heichwaasser.lu/api/v1
 ```
 * [<code>GET</code> /rivers/:id](https://heichwaasser.lu/api/v1/rivers/17)
 
-```bash 
+```bash
 [
     {
         "id": 17,
@@ -111,7 +111,7 @@ https://heichwaasser.lu/api/v1
 ```
 #### Stations
 * [<code>GET</code> /stations](https://heichwaasser.lu/api/v1/stations)
-```bash 
+```bash
 [
     {
         "id": 81,
@@ -153,7 +153,7 @@ https://heichwaasser.lu/api/v1
 ]
 ```
 * [<code>GET</code> /stations/:id](https://heichwaasser.lu/api/v1/stations/81)
-```bash 
+```bash
 {
     "id": 81,
     "river": {
@@ -197,11 +197,14 @@ https://heichwaasser.lu/api/v1
             "unit": "cm"
         }
     ]
-} 
+}
 ```
 
- 
- 
+### Development
+* Install [Composer](http://getcomposer.com).
+* Run `composer install` in the project's root.
+* Make sure you have a MariaDB/MySQL server running and run `php bin/console doctrine:schema:update --force` to initiate the database
+
 License
 ------------
 
