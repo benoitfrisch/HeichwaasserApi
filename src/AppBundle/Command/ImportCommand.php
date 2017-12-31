@@ -44,7 +44,7 @@ class ImportCommand extends ContainerAwareCommand
         $this->em = $this->getContainer()->get("doctrine.orm.default_entity_manager");
 
         // get the current data file link from data.public.lu API
-        $dataUrl    = file_get_contents('https://data.public.lu/api/1//datasets/measured-water-levels/');
+        $dataUrl    = file_get_contents('https://data.public.lu/api/1/datasets/measured-water-levels/');
         $data       = json_decode($dataUrl, true);
         $currentUrl = $data['resources'][0]['url'];
 
