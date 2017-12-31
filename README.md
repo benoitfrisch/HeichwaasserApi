@@ -210,12 +210,22 @@ On import the new water level is compared to the previous one, and the trend fie
 * `rest` new level = previous level
 * `up`   new level > previous level
 
-### Development
+### Admin Interface
+The Admin Interface located at `<installed directory>/admin` allows you to update the river and station names.
+You can also add and modify alert levels. 
+Don't change the `Shortname` Field on River and Station classes, as this field is used on the import command to correctly map the new measurements.
+
+
+Development
+------------
 * Install [Composer](https://getcomposer.org/).
 * Run `composer install` in the project's root.
 * Make sure you have a MariaDB/MySQL server running and run `php bin/console doctrine:schema:update --force` to initiate the database
 
+If you want to access the `/admin` page, you have to set up a user:
+* Run `bin/console fos:user:create` and enter a username, email and password.
+* Run `bin/console fos:user:promote [created username] ROLE_ADMIN` to promote your user and enable access to `\admin` page.
+
 License
 ------------
-
- Check out the [LICENSE](LICENSE) file.
+Check out the [LICENSE](LICENSE) file.
