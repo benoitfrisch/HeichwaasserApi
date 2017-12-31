@@ -32,6 +32,7 @@ https://heichwaasser.lu/api/v1
                 "city": "Ettelbr\u00fcck",
                 "latitude": 49.84373,
                 "longitude": 6.09713,
+                "trend": "rest",
                 "current": {
                     "timestamp": "2017-12-27T16:45:00",
                     "value": 69.8,
@@ -64,6 +65,7 @@ https://heichwaasser.lu/api/v1
     }
 ]
 ```
+
 * [<code>GET</code> /rivers/:id](https://heichwaasser.lu/api/v1/rivers/17)
 
 ```bash
@@ -77,6 +79,7 @@ https://heichwaasser.lu/api/v1
                 "city": "Ettelbr\u00fcck",
                 "latitude": 49.84373,
                 "longitude": 6.09713,
+                "trend": "rest",
                 "current": {
                     "timestamp": "2017-12-27T16:45:00",
                     "value": 69.8,
@@ -122,6 +125,7 @@ https://heichwaasser.lu/api/v1
         "city": "Bigonville",
         "latitude": 49.86875,
         "longitude": 5.79996,
+        "trend": "rest",
         "current": {
             "timestamp": "2017-12-27T16:45:00",
             "value": 108.2,
@@ -163,6 +167,7 @@ https://heichwaasser.lu/api/v1
     "city": "Bigonville",
     "latitude": 49.86875,
     "longitude": 5.79996,
+    "trend": "rest",
     "current": {
         "timestamp": "2017-12-27T16:45:00",
         "value": 108.2,
@@ -199,6 +204,11 @@ https://heichwaasser.lu/api/v1
     ]
 }
 ```
+##### Explanation of "trend" field
+On import the new water level is compared to the previous one, and the trend field is updated.
+* `down` new level < previous level
+* `rest` new level = previous level
+* `up`   new level > previous level
 
 ### Development
 * Install [Composer](https://getcomposer.org/).

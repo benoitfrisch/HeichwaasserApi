@@ -67,7 +67,7 @@ class Station
      * @ORM\Column(type="string",  nullable=false)
      * @Serializer\Groups({"station","station_measurement"})
      */
-    private $tendance;
+    private $trend;
 
     /**
      * One Station has one current measurement.
@@ -374,18 +374,18 @@ class Station
     /**
      * @return mixed
      */
-    public function getTendance()
+    public function getTrend()
     {
-        return $this->tendance;
+        return $this->trend;
     }
 
     /**
-     * @param mixed $tendance
+     * @param mixed $trend
      * @return Station
      */
-    public function setTendance($tendance)
+    public function setTrend($trend)
     {
-        $this->tendance = $tendance;
+        $this->trend = $trend;
         return $this;
     }
 }
