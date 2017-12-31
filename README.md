@@ -200,6 +200,10 @@ https://heichwaasser.lu/api/v1
 }
 ```
 
+### Development
+* Install [Composer](http://getcomposer.com).
+* Run `composer install` in the project's root.
+* Make sure you have a MariaDB/MySQL server running and run `php bin/console doctrine:schema:update --force` to initiate the database
 
 License
 ------------
