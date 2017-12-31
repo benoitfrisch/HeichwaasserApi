@@ -129,11 +129,11 @@ class ImportCommand extends ContainerAwareCommand
                         $this->em->flush();
 
                         if ($measurement->getValue() < $this->station->getCurrent()->getValue()) {
-                            $this->station->setTendance("down");
+                            $this->station->setTrend("down");
                         } else if ($measurement->getValue() > $this->station->getCurrent()->getValue()) {
-                            $this->station->setTendance("up");
+                            $this->station->setTrend("up");
                         } else {
-                            $this->station->setTendance("rest");
+                            $this->station->setTrend("rest");
                         }
 
 
