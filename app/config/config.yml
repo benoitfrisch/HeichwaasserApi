@@ -105,6 +105,7 @@ nelmio_cors:
                 allow_origin: ['*']
                 allow_headers: ['X-Custom-Auth']
                 allow_methods: ['GET']
+                allow_credentials: true
                 max_age: 3600
 
 nelmio_api_doc: ~
