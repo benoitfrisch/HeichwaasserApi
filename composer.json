@@ -36,7 +36,8 @@
     "nelmio/api-doc-bundle": "2.13.*",
     "friendsofsymfony/user-bundle": "~2.0",
     "javiereguiluz/easyadmin-bundle": "1.*",
-    "symfony/assetic-bundle": "^2.8"
+    "symfony/assetic-bundle": "^2.8",
+    "nelmio/cors-bundle": "1.5.*"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
