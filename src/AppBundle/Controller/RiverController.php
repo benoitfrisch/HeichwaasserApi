@@ -22,8 +22,8 @@ class RiverController extends Controller
     function getRiverAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $sections = $em->getRepository('AppBundle:River')->findBy([], ['name' => 'ASC']);
-        return $sections;
+        $rivers = $em->getRepository('AppBundle:River')->findBy([], ['name' => 'ASC']);
+        return $rivers;
     }
 
     /**
@@ -38,7 +38,7 @@ class RiverController extends Controller
     function getRiverDetailAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $sections = $em->getRepository('AppBundle:River')->find($id);
-        return $sections;
+        $river = $em->getRepository('AppBundle:River')->find($id);
+        return $river;
     }
 }
