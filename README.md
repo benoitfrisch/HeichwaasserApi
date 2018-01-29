@@ -158,7 +158,7 @@ https://heichwaasser.lu/api/v1
 ```
 * [<code>GET</code> /stations/:id](https://heichwaasser.lu/api/v1/stations/81)
 
-*The measurements are displayed in an descending order.*
+*The measurements are displayed in a descending order.*
 
 ```bash
 {
@@ -262,7 +262,7 @@ https://heichwaasser.lu/api/v1
 
 * [<code>GET</code> /stations/:id/limit/:count](https://heichwaasser.lu/api/v1/stations/81/limit/10)
 
-*The measurements are displayed in an descending order and limited to `:count` items.*
+*The measurements are displayed in a descending order and limited to `:count` items.*
 
 ```bash
 {
@@ -370,7 +370,7 @@ https://heichwaasser.lu/api/v1
 
 *The returned measurements are strictly greater than the start timestamp and strictly smaller than the end timestamp.*
 
-*The measurements are displayed in an descending order.*
+*The measurements are displayed in a descending order.*
 
 `:timestamp` must be provided as UNIX timestamp in seconds since Jan 01 1970.
 
