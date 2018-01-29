@@ -50,7 +50,7 @@ class StationController extends Controller
     /**
      * @ApiDoc(
      *  resource=true,
-     *  description="This displays all a station with measurements."
+     *  description="This displays all a station with measurements between the start and end date."
      * )
      * @Get("/api/v1/stations/{id}/start/{start}/end/{end}", defaults={"_format"="json"})
      * @View(serializerGroups={"station","river","station_river","measurement", "alert","oneMeasurement"})
@@ -58,10 +58,10 @@ class StationController extends Controller
     public
     function getRiverDetailLimitAction($id, $start, $end)
     {
-        $startDate = DateTime::createFromFormat('Ymd', $start);
-        $endDate = DateTime::createFromFormat('Ymd', $end);
+        $startDate = DateTime::createFromFormat('U', $start);
+        $endDate = DateTime::createFromFormat('U', $end);
 
-        if ($startDate >= $endDate) {
+        if ($startDate > $endDate) {
             throw new HttpException(400, "Start date has to be before end date.");
         }
 

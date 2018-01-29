@@ -204,6 +204,61 @@ https://heichwaasser.lu/api/v1
     ]
 }
 ```
+
+* [<code>GET</code> /stations/:id/start/:timestamp/end/:timestamp](https://heichwaasser.lu/api/v1/stations/81/start/1513728000/end/1513200000)
+
+*The returned measurements are strictly greater than the start timestamp and strictly smaller than the end timestamp.*
+
+`:timestamp` must be provided as UNIX timestamp in seconds since Jan 01 1970.
+
+```bash
+{
+    "id": 81,
+    "river": {
+        "id": 3,
+        "name": "S\u00fbre"
+    },
+    "city": "Bigonville",
+    "latitude": 49.86875,
+    "longitude": 5.79996,
+    "trend": "rest",
+    "current": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "minimum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "maximum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "measurements": [
+        {
+            "timestamp": "2017-12-20T00:15:00",
+            "value": 133.6,
+            "unit": "cm"
+        },..
+    ],
+    "alert_levels": [
+        {
+            "name": "Level 1",
+            "value": 250,
+            "unit": "cm"
+        },
+        {
+            "name": "Level 2",
+            "value": 300,
+            "unit": "cm"
+        }
+    ]
+}
+```
+
 ##### Explanation of "trend" field
 On import the new water level is compared to the previous one, and the trend field is updated.
 * `down` new level < previous level
