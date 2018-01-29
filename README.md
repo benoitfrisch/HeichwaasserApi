@@ -205,7 +205,7 @@ https://heichwaasser.lu/api/v1
 }
 ```
 
-* [<code>GET</code> /stations/:id/start/:timestamp/end/:timestamp](https://heichwaasser.lu/api/v1/stations/81/start/1513728000/end/1513200000)
+* [<code>GET</code> /stations/:id/start/:timestamp/end/:timestamp](https://heichwaasser.lu/api/v1/stations/81/start/1513728000/end/1513764000)
 
 *The returned measurements are strictly greater than the start timestamp and strictly smaller than the end timestamp.*
 
