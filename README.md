@@ -157,6 +157,9 @@ https://heichwaasser.lu/api/v1
 ]
 ```
 * [<code>GET</code> /stations/:id](https://heichwaasser.lu/api/v1/stations/81)
+
+*The measurements are displayed in an descending order.*
+
 ```bash
 {
     "id": 81,
@@ -205,9 +208,227 @@ https://heichwaasser.lu/api/v1
 }
 ```
 
+* [<code>GET</code> /stations/:id/reversed](https://heichwaasser.lu/api/v1/stations/81/reversed)
+
+*The measurements are displayed in an ascending order.*
+
+```bash
+{
+    "id": 81,
+    "river": {
+        "id": 3,
+        "name": "S\u00fbre"
+    },
+    "city": "Bigonville",
+    "latitude": 49.86875,
+    "longitude": 5.79996,
+    "trend": "rest",
+    "current": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "minimum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "maximum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "measurements": [
+        {
+            "timestamp": "2017-12-27T16:45:00",
+            "value": 108.2,
+            "unit": "cm"
+        },..
+    ],
+    "alert_levels": [
+        {
+            "name": "Level 1",
+            "value": 250,
+            "unit": "cm"
+        },
+        {
+            "name": "Level 2",
+            "value": 300,
+            "unit": "cm"
+        }
+    ]
+}
+```
+
+* [<code>GET</code> /stations/:id/limit/:count](https://heichwaasser.lu/api/v1/stations/81/limit/10)
+
+*The measurements are displayed in an descending order and limited to `:count` items.*
+
+```bash
+{
+    "id": 81,
+    "river": {
+        "id": 3,
+        "name": "S\u00fbre"
+    },
+    "city": "Bigonville",
+    "latitude": 49.86875,
+    "longitude": 5.79996,
+    "trend": "rest",
+    "current": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "minimum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "maximum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "measurements": [
+        {
+            "timestamp": "2017-12-27T16:45:00",
+            "value": 108.2,
+            "unit": "cm"
+        },..
+    ],
+    "alert_levels": [
+        {
+            "name": "Level 1",
+            "value": 250,
+            "unit": "cm"
+        },
+        {
+            "name": "Level 2",
+            "value": 300,
+            "unit": "cm"
+        }
+    ]
+}
+```
+
+
+* [<code>GET</code> /stations/:id/limit/:count/reversed](https://heichwaasser.lu/api/v1/stations/81/limit/10/reversed)
+
+*The measurements are displayed in an ascending order and limited to `:count` items.*
+
+```bash
+{
+    "id": 81,
+    "river": {
+        "id": 3,
+        "name": "S\u00fbre"
+    },
+    "city": "Bigonville",
+    "latitude": 49.86875,
+    "longitude": 5.79996,
+    "trend": "rest",
+    "current": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "minimum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "maximum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "measurements": [
+        {
+            "timestamp": "2017-12-27T16:45:00",
+            "value": 108.2,
+            "unit": "cm"
+        },..
+    ],
+    "alert_levels": [
+        {
+            "name": "Level 1",
+            "value": 250,
+            "unit": "cm"
+        },
+        {
+            "name": "Level 2",
+            "value": 300,
+            "unit": "cm"
+        }
+    ]
+}
+```
+
+
 * [<code>GET</code> /stations/:id/start/:timestamp/end/:timestamp](https://heichwaasser.lu/api/v1/stations/81/start/1513728000/end/1513764000)
 
 *The returned measurements are strictly greater than the start timestamp and strictly smaller than the end timestamp.*
+
+*The measurements are displayed in an descending order.*
+
+`:timestamp` must be provided as UNIX timestamp in seconds since Jan 01 1970.
+
+```bash
+{
+    "id": 81,
+    "river": {
+        "id": 3,
+        "name": "S\u00fbre"
+    },
+    "city": "Bigonville",
+    "latitude": 49.86875,
+    "longitude": 5.79996,
+    "trend": "rest",
+    "current": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "minimum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "maximum": {
+        "timestamp": "2017-12-27T16:45:00",
+        "value": 108.2,
+        "unit": "cm"
+    },
+    "measurements": [
+        {
+            "timestamp": "2017-12-20T00:15:00",
+            "value": 133.6,
+            "unit": "cm"
+        },..
+    ],
+    "alert_levels": [
+        {
+            "name": "Level 1",
+            "value": 250,
+            "unit": "cm"
+        },
+        {
+            "name": "Level 2",
+            "value": 300,
+            "unit": "cm"
+        }
+    ]
+}
+```
+
+
+* [<code>GET</code> /stations/:id/start/:timestamp/end/:timestamp/reversed](https://heichwaasser.lu/api/v1/stations/81/start/1513728000/end/1513764000/reversed)
+
+
+*The returned measurements are strictly greater than the start timestamp and strictly smaller than the end timestamp.*
+
+*The measurements are displayed in an ascending order.*
 
 `:timestamp` must be provided as UNIX timestamp in seconds since Jan 01 1970.
 
