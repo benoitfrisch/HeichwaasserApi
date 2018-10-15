@@ -75,7 +75,7 @@ class NewImportCommand extends ContainerAwareCommand
             $line      = utf8_encode($currentArray[$i]);
             $lineArray = explode(";", $line);
 
-            $stationName   = $lineArray[0];
+            $stationName   = $lineArray[$i];
             $station       = $this->em->getRepository('AppBundle:Station')->findOneBy(['searchName' => $stationName]);
             $this->river   = $station->getRiver();
             $this->station = $station;
@@ -83,7 +83,7 @@ class NewImportCommand extends ContainerAwareCommand
 
             $progress->advance();
             //last line before measurements
-            $this->progressM = new ProgressBar($output);
+            $this->progressM = new ProgressBar($output, count($lineArray) - 3);
             $this->progressM->start();
             $this->progressM->setFormat("normal");
             $this->progressM->setMessage("Importing all measurements...");
