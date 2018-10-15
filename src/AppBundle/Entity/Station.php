@@ -13,6 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Station
 {
+    const TREND_DOWN = "down";
+    const TREND_REST = "rest";
+    const TREND_UP   = "up";
+
     /**
      * @var int
      *
@@ -36,6 +40,11 @@ class Station
      * @ORM\Column(type="string",  nullable=false)
      */
     private $shortname;
+
+    /**
+     * @ORM\Column(type="string",  nullable=true)
+     */
+    private $searchName;
 
     /**
      * @Assert\NotBlank()
@@ -130,6 +139,7 @@ class Station
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -148,6 +158,7 @@ class Station
     public function setRiver($river)
     {
         $this->river = $river;
+
         return $this;
     }
 
@@ -166,6 +177,7 @@ class Station
     public function setShortname($shortname)
     {
         $this->shortname = $shortname;
+
         return $this;
     }
 
@@ -184,6 +196,7 @@ class Station
     public function setCity($city)
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -202,6 +215,7 @@ class Station
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
@@ -220,6 +234,7 @@ class Station
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 
@@ -238,6 +253,7 @@ class Station
     public function setMeasurements($measurements)
     {
         $this->measurements = $measurements;
+
         return $this;
     }
 
@@ -256,6 +272,7 @@ class Station
     public function setSupplement($supplement)
     {
         $this->supplement = $supplement;
+
         return $this;
     }
 
@@ -274,6 +291,7 @@ class Station
     public function setAlertLevels($alertLevels)
     {
         $this->alertLevels = $alertLevels;
+
         return $this;
     }
 
@@ -292,6 +310,7 @@ class Station
     public function setCurrent($current)
     {
         $this->current = $current;
+
         return $this;
     }
 
@@ -313,10 +332,14 @@ class Station
     {
         if ($this->getMinimum() == null) {
             $this->minimum = $measurement;
+
             return $this;
-        } else if ($measurement->getValue() < $this->getMinimum()->getValue()) {
-            $this->minimum = $measurement;
-            return $this;
+        } else {
+            if ($measurement->getValue() < $this->getMinimum()->getValue()) {
+                $this->minimum = $measurement;
+
+                return $this;
+            }
         }
     }
 
@@ -335,6 +358,7 @@ class Station
     public function setMinimum($minimum)
     {
         $this->minimum = $minimum;
+
         return $this;
     }
 
@@ -346,10 +370,14 @@ class Station
     {
         if ($this->getMaximum() == null) {
             $this->maximum = $measurement;
+
             return $this;
-        } else if ($measurement->getValue() > $this->getMaximum()->getValue()) {
-            $this->maximum = $measurement;
-            return $this;
+        } else {
+            if ($measurement->getValue() > $this->getMaximum()->getValue()) {
+                $this->maximum = $measurement;
+
+                return $this;
+            }
         }
     }
 
@@ -368,6 +396,7 @@ class Station
     public function setMaximum($maximum)
     {
         $this->maximum = $maximum;
+
         return $this;
     }
 
@@ -386,6 +415,28 @@ class Station
     public function setTrend($trend)
     {
         $this->trend = $trend;
+
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchName()
+    {
+        return $this->searchName;
+    }
+
+    /**
+     * @param mixed $searchName
+     * @return Station
+     */
+    public function setSearchName($searchName)
+    {
+        $this->searchName = $searchName;
+
+        return $this;
+    }
+
+
 }

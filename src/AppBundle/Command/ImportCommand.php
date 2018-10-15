@@ -44,9 +44,15 @@ class ImportCommand extends ContainerAwareCommand
         $this->em = $this->getContainer()->get("doctrine.orm.default_entity_manager");
 
         // get the current data file link from data.public.lu API
-        $dataUrl    = file_get_contents('https://data.public.lu/api/1/datasets/measured-water-levels/');
-        $data       = json_decode($dataUrl, true);
-        $currentUrl = $data['resources'][0]['url'];
+        $dataUrl = file_get_contents('https://data.public.lu/api/1/datasets/measured-water-levels/');
+        $data    = json_decode($dataUrl);
+
+        foreach ($data->resources as $item) {
+            if ($item->id == "73a5afbd-f075-421d-821c-b23384bb179e") { //innondations.txt
+                $currentUrl = $item->url;
+            }
+        }
+        //$currentUrl = $data['resources'][3]['url'];
 
         //open current File
         $currentFile = file_get_contents($currentUrl);
@@ -67,10 +73,10 @@ class ImportCommand extends ContainerAwareCommand
                 $nameArray = explode(";", $line);
                 if (count($nameArray) > 5) {
                     $stationName = substr($nameArray[0], strlen("#SNAME"));
-                    $riverName = substr($nameArray[4], strlen("SWATER"));
+                    $riverName   = substr($nameArray[4], strlen("SWATER"));
 
                     //check if river and station exist
-                    $river = $this->em->getRepository('AppBundle:River')->findOneBy(['shortname' => $riverName]);
+                    $river   = $this->em->getRepository('AppBundle:River')->findOneBy(['shortname' => $riverName]);
                     $station = $this->em->getRepository('AppBundle:Station')->findOneBy(['shortname' => $stationName]);
 
                     if (empty($river)) {
@@ -89,73 +95,77 @@ class ImportCommand extends ContainerAwareCommand
                         $station->setCity($stationName);
                         $station->setShortname($stationName);
                         $station->setRiver($river);
+                        $station->setTrend(Station::TREND_REST);
                         $this->em->persist($station);
                         $this->em->flush();
                     }
-
-
                 }
-                $this->river = $river;
+                $this->river   = $river;
                 $this->station = $station;
 
 
                 echo $station->getCity() . "-" . $river->getName() . "\n";
 
                 $progress->advance();
+            } else {
+                if (substr($line, 0, strlen("#RSTATEW6;*;")) == "#RSTATEW6;*;") {
+                    //last line before measurements
+                    $this->progressM = new ProgressBar($output);
+                    $this->progressM->start();
+                    $this->progressM->setFormat("normal");
+                    $this->progressM->setMessage("Importing all measurements...");
+                } else {
+                    if (substr($line, 0, 1) != "#") {
+                        $measureArray = explode(" ", $line);
+                        if (count($measureArray) >= 2) {
+                            $timestamp   = DateTime::createFromFormat('YmdHis', $measureArray[0]);
+                            $value       = $measureArray[1];
+                            $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
 
 
-            } else if (substr($line, 0, strlen("#RSTATEW6;*;")) == "#RSTATEW6;*;") {
-                //last line before measurements
-                $this->progressM = new ProgressBar($output);
-                $this->progressM->start();
-                $this->progressM->setFormat("normal");
-                $this->progressM->setMessage("Importing all measurements...");
-            } else if (substr($line, 0, 1) != "#") {
-                $measureArray = explode(" ", $line);
-                if (count($measureArray) >= 2) {
-                    $timestamp = DateTime::createFromFormat('YmdHis', $measureArray[0]);
-                    $value = $measureArray[1];
-                    $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
+                            if (empty($measurement)) {
+                                $measurement = new Measurement();
+                                $measurement->setStation($this->station);
+                                $measurement->setUnit("cm");
+                                $measurement->setValue($value);
+                                $measurement->setTimestamp($timestamp);
+
+                                $this->em->persist($measurement);
+                                $this->em->flush();
+
+                                if ($this->station->getCurrent()) {
+                                    if ($measurement->getValue() < $this->station->getCurrent()->getValue()) {
+                                        $this->station->setTrend(Station::TREND_DOWN);
+                                    } else {
+                                        if ($measurement->getValue() > $this->station->getCurrent()->getValue()) {
+                                            $this->station->setTrend(Station::TREND_UP);
+                                        } else {
+                                            $this->station->setTrend(Station::TREND_REST);
+                                        }
+                                    }
+                                }
 
 
-                    if (empty($measurement)) {
-                        $measurement = new Measurement();
-                        $measurement->setStation($this->station);
-                        $measurement->setUnit("cm");
-                        $measurement->setValue($value);
-                        $measurement->setTimestamp($timestamp);
+                                $this->station->updateStats($measurement);
 
-                        $this->em->persist($measurement);
-                        $this->em->flush();
+                                //$output->writeln($this->station->getCurrent() . $this->station->getMinimum() . $this->station->getMaximum());
+                                $this->em->persist($this->station);
+                                $this->em->flush();
 
-                        if ($measurement->getValue() < $this->station->getCurrent()->getValue()) {
-                            $this->station->setTrend("down");
-                        } else if ($measurement->getValue() > $this->station->getCurrent()->getValue()) {
-                            $this->station->setTrend("up");
-                        } else {
-                            $this->station->setTrend("rest");
+                                $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
+                                $this->progressM->advance();
+                            }
                         }
-
-
-                        $this->station->updateStats($measurement);
-
-                        //$output->writeln($this->station->getCurrent() . $this->station->getMinimum() . $this->station->getMaximum());
-                        $this->em->persist($this->station);
-                        $this->em->flush();
-
-                        $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
-                        $this->progressM->advance();
+                    } else {
+                        if (substr($line, 0, strlen("## Exported")) == "## Exported") {
+                            //first line of station block, stop progress bar for measurements
+                            if ($this->progressM != null) {
+                                $this->progressM->finish();
+                            }
+                        }
                     }
-
-
-                }
-            } else if (substr($line, 0, strlen("## Exported")) == "## Exported") {
-                //first line of station block, stop progress bar for measurements
-                if ($this->progressM != null) {
-                    $this->progressM->finish();
                 }
             }
-
         }
         $progress->finish();
         $output->writeln("Finished import.");
