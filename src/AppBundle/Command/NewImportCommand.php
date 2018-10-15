@@ -64,7 +64,7 @@ class NewImportCommand extends ContainerAwareCommand
         $titleArray = explode(";", $currentArray[0]);
         //print_r($titleArray);
 
-        $progress = new ProgressBar($output, 37);
+        $progress = new ProgressBar($output, count($currentArray) - 1);
         // start and displays the progress bar
         $progress->start();
         $progress->setFormat("normal");
@@ -75,7 +75,7 @@ class NewImportCommand extends ContainerAwareCommand
             $line      = utf8_encode($currentArray[$i]);
             $lineArray = explode(";", $line);
 
-            $stationName   = $lineArray[$i];
+            $stationName   = $lineArray[0];
             $station       = $this->em->getRepository('AppBundle:Station')->findOneBy(['searchName' => $stationName]);
             $this->river   = $station->getRiver();
             $this->station = $station;
