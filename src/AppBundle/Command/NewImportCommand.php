@@ -88,7 +88,7 @@ class NewImportCommand extends ContainerAwareCommand
             $this->progressM->setFormat("normal");
             $this->progressM->setMessage("Importing all measurements...");
 
-            for ($i = 3; $i < count($lineArray) - 1; $i++) {
+            for ($i = count($lineArray) - 12; $i < count($lineArray) - 1; $i++) {
                 $timestamp   = DateTime::createFromFormat('d.m.Y H:i', $titleArray[$i]);
                 $value       = $lineArray[$i];
                 $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
