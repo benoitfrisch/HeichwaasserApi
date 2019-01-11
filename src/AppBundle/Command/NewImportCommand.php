@@ -92,7 +92,8 @@ class NewImportCommand extends ContainerAwareCommand
                 $timestamp   = DateTime::createFromFormat('d.m.Y H:i', $titleArray[$j]);
                 $value       = $lineArray[$j];
 
-                if ($this->station->getCurrent() && $this->station->getCurrent()->getTimestamp() < $timestamp) {
+
+                if ($this->station->getCurrent() && $this->station->getCurrent()->getTimestamp() < $timestamp && $value > 0) {
                     $measurement = new Measurement();
                     $measurement->setStation($this->station);
                     $measurement->setUnit("cm");
