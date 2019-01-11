@@ -72,7 +72,7 @@ class NewImportCommand extends ContainerAwareCommand
         //iterate through array
 
         for ($i = 1; $i < count($currentArray) - 1; $i++) {
-            $line      = utf8_encode($currentArray[$i]);
+            $line      = utf8_decode($currentArray[$i]);
             $lineArray = explode(";", $line);
 
             $stationName   = $lineArray[0];
