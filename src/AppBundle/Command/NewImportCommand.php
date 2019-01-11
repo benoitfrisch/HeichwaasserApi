@@ -82,7 +82,7 @@ class NewImportCommand extends ContainerAwareCommand
             echo $station->getCity() . "-" . $this->getName() . "\n";
 
             //last line before measurements
-            $this->progressM = new ProgressBar($output, count($lineArray) - 3);
+            $this->progressM = new ProgressBar($output, 11);
             $this->progressM->start();
             $this->progressM->setFormat("normal");
             $this->progressM->setMessage("Importing all measurements...");
@@ -90,9 +90,6 @@ class NewImportCommand extends ContainerAwareCommand
             for ($j = count($lineArray) - 12; $j < count($lineArray) - 1; $j++) {
                 $timestamp   = DateTime::createFromFormat('d.m.Y H:i', $titleArray[$j]);
                 $value       = $lineArray[$j];
-
-                $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
-
                 if ($this->station->getCurrent() && $this->station->getCurrent()->getTimestamp() < $timestamp && $value > 0) {
                     $measurement = new Measurement();
                     $measurement->setStation($this->station);
@@ -114,17 +111,13 @@ class NewImportCommand extends ContainerAwareCommand
                             }
                         }
                     }
-
-
                     $this->station->updateStats($measurement);
-
                     //$output->writeln($this->station->getCurrent() . $this->station->getMinimum() . $this->station->getMaximum());
                     $this->em->persist($this->station);
                     $this->em->flush();
-
-                    $output->writeln("added--".$timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
-                    $this->progressM->advance();
+                    $output->writeln("" . $timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
                 }
+                $this->progressM->advance();
             }
             $this->progressM->finish();
 
