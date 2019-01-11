@@ -72,11 +72,11 @@ class NewImportCommand extends ContainerAwareCommand
         //iterate through array
 
         for ($i = 1; $i < count($currentArray) - 1; $i++) {
-            $line      = utf8_decode($currentArray[$i]);
+            $line      = utf8_encode($currentArray[$i]);
             $lineArray = explode(";", $line);
 
             $stationName   = $lineArray[0];
-            echo $stationName;
+            echo utf8_decode($stationName);
             $station       = $this->em->getRepository('AppBundle:Station')->findOneBy(['searchName' => $stationName]);
             $this->river   = $station->getRiver();
             $this->station = $station;
