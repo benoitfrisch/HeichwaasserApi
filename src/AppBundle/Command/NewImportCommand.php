@@ -81,7 +81,6 @@ class NewImportCommand extends ContainerAwareCommand
             $this->station = $station;
             echo $station->getCity() . "-" . $this->getName() . "\n";
 
-            $progress->advance();
             //last line before measurements
             $this->progressM = new ProgressBar($output, count($lineArray) - 3);
             $this->progressM->start();
@@ -126,6 +125,8 @@ class NewImportCommand extends ContainerAwareCommand
                 }
             }
             $this->progressM->finish();
+
+            $progress->advance();
         }
 
 
