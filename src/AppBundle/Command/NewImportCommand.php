@@ -76,6 +76,7 @@ class NewImportCommand extends ContainerAwareCommand
             $lineArray = explode(";", $line);
 
             $stationName   = $lineArray[0];
+            echo $stationName;
             $station       = $this->em->getRepository('AppBundle:Station')->findOneBy(['searchName' => $stationName]);
             $this->river   = $station->getRiver();
             $this->station = $station;
