@@ -76,7 +76,6 @@ class NewImportCommand extends ContainerAwareCommand
             $lineArray = explode(";", $line);
 
             $stationName = utf8_decode($lineArray[0]);
-            echo $stationName;
             $station       = $this->em->getRepository('AppBundle:Station')->findOneBy(['searchName' => $stationName]);
             $this->river   = $station->getRiver();
             $this->station = $station;
@@ -92,6 +91,7 @@ class NewImportCommand extends ContainerAwareCommand
                 $timestamp   = DateTime::createFromFormat('d.m.Y H:i', $titleArray[$j]);
                 $value       = $lineArray[$j];
 
+                $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
 
                 if ($this->station->getCurrent() && $this->station->getCurrent()->getTimestamp() < $timestamp && $value > 0) {
                     $measurement = new Measurement();
@@ -122,7 +122,7 @@ class NewImportCommand extends ContainerAwareCommand
                     $this->em->persist($this->station);
                     $this->em->flush();
 
-                    $output->writeln($timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
+                    $output->writeln("added--".$timestamp->format("d.m.Y H:i:s") . " " . $value . " cm");
                     $this->progressM->advance();
                 }
             }
