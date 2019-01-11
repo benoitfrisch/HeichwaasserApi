@@ -77,9 +77,6 @@ class NewImportCommand extends ContainerAwareCommand
 
             $stationName   = $lineArray[0];
             $station       = $this->em->getRepository('AppBundle:Station')->findOneBy(['searchName' => $stationName]);
-            if (!$station) {
-                continue;
-            }
             $this->river   = $station->getRiver();
             $this->station = $station;
             echo $station->getCity() . "-" . $this->getName() . "\n";
@@ -91,9 +88,9 @@ class NewImportCommand extends ContainerAwareCommand
             $this->progressM->setFormat("normal");
             $this->progressM->setMessage("Importing all measurements...");
 
-            for ($i = count($lineArray) - 12; $i < count($lineArray) - 1; $i++) {
-                $timestamp   = DateTime::createFromFormat('d.m.Y H:i', $titleArray[$i]);
-                $value       = $lineArray[$i];
+            for ($j = count($lineArray) - 12; $j < count($lineArray) - 1; $j++) {
+                $timestamp   = DateTime::createFromFormat('d.m.Y H:i', $titleArray[$j]);
+                $value       = $lineArray[$j];
 
                 if ($this->station->getCurrent() && $this->station->getCurrent()->getTimestamp() < $timestamp) {
                     $measurement = new Measurement();
