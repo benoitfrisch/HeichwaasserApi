@@ -143,6 +143,7 @@ easy_admin:
                            - supplement
                            - latitude
                            - longitude
+                           - searchName
                            - measurements
                            - minimum
                            - maximum
@@ -153,6 +154,7 @@ easy_admin:
                            - city
                            - river
                            - shortname
+                           - searchName
                            - supplement
                            - latitude
                            - longitude
@@ -161,6 +163,7 @@ easy_admin:
                            - city
                            - river
                            - shortname
+                           - searchName
                            - supplement
                            - latitude
                            - longitude
