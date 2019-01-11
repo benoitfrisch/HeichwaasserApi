@@ -120,10 +120,8 @@ class ImportCommand extends ContainerAwareCommand
                         if (count($measureArray) >= 2) {
                             $timestamp   = DateTime::createFromFormat('YmdHis', $measureArray[0]);
                             $value       = $measureArray[1];
-                            $measurement = $this->em->getRepository('AppBundle:Measurement')->findOneBy(['timestamp' => $timestamp, 'station' => $this->station]);
 
-
-                            if (empty($measurement)) {
+                            if ($this->station->getCurrent() && $this->station->getCurrent()->getTimestamp() < $timestamp) {
                                 $measurement = new Measurement();
                                 $measurement->setStation($this->station);
                                 $measurement->setUnit("cm");
