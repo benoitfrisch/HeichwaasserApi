@@ -47,13 +47,13 @@
     </div>
 </div>
 <footer class="footer">
-    <div class="container">
+    <div class="container credits">
         <div class="row hidden-xs hidden-sm">
             <div class="col-md-4">
                 <p class="text-muted text-left">
                     <a href="https://facebook.com/heichwaasser" target="_blank">
                         {% image '@AppBundle/Resources/public/images/fb.png' %}
-                        <img src="{{ asset_url }}" width="115" alt="heichwaasser facebook" style="margin-top: 0px">
+                            <img src="{{ asset_url }}" width="115" alt="heichwaasser facebook" style="margin-top: 0px">
                         {% endimage %}
                     </a>
 
@@ -66,29 +66,22 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <p class="text-muted text-right">powered by <a href="https://fresh.lu" target="_blank"
-                                                               class="text-muted">
-                        {% image '@AppBundle/Resources/public/images/fresh.png' %}
-                        <img src="{{ asset_url }}" height="25px"
-                             style="padding-bottom: 7px; margin-left: -3px"
-                             alt="fresh.lu">
-                        {% endimage %}</a>
+                <p class="text-muted text-right"><span class="credits"><b>powered
+                    by {</b><a href="https://fresh.lu" target="_blank"
+                               class="text-muted">BeFresh</a><b>}</b></span>
                 </p>
             </div>
         </div>
 
-        <p class="text-muted visible-xs-* visible-sm-* hidden-md hidden-lg"><a href="https://facebook.com/heichwaasser"
-                                                                               target="_blank">{% image '@AppBundle/Resources/public/images/fb.png' %}
-                <img src="{{ asset_url }}" width="115" alt="heichwaasser facebook" style="margin-top: 0px">
+        <p class="text-muted visible-xs-* visible-sm-* hidden-md hidden-lg credits"><a href="https://facebook.com/heichwaasser"
+                                                                                       target="_blank">{% image '@AppBundle/Resources/public/images/fb.png' %}
+                    <img src="{{ asset_url }}" width="115" alt="heichwaasser facebook" style="margin-top: 0px">
                 {% endimage %}</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="mailto:info@heichwaasser.lu" target="_blank"
                                                                 class="text-muted">
-                <span class="glyphicon glyphicon-envelope"></span> Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;by <a
-                    href="https://fresh.lu" target="_blank"
-                    class="text-muted">  {% image '@AppBundle/Resources/public/images/fresh.png' %}
-                <img src="{{ asset_url }}" height="25px"
-                     style="padding-bottom: 7px; margin-left: -3px"
-                     alt="fresh.lu"></a>
-            {% endimage %}</a></p>
+                <span class="glyphicon glyphicon-envelope"></span> Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="credits"><b>powered
+                    by {</b><a href="https://fresh.lu" target="_blank"
+                               class="text-muted">BeFresh</a><b>}</b></span>
+        </p>
 
     </div>
 </footer>
